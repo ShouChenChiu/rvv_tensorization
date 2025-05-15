@@ -1,0 +1,6 @@
+[submodule "tvm"]
+	path = tvm
+	url = https://github.com/ShouChenChiu/tvm
+[submodule "mlc-llm"]
+	path = mlc-llm
+	url = https://github.com/ShouChenChiu/mlc
