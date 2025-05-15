@@ -1,3 +1,13 @@
+# How to use
+依照tvm 和 mlc llm 的說明Build 兩個submodule
+用riscv 的gcc compile prefill.c 
+```
+riscv64-unknown-linux-gnu-gcc -march=rv64gcv -03 -c prefill.c -o prefill.o 
+```
+使用compile_riscv.sh這個 script 會先把model compile成tarball 
+應該會包含 devc.o 和 lib0.o 這兩個檔案，把tarball丟到 bananaPi上 打開並跟prefill.o link 成.so 
+就可以使用 mlc_llm 執行model 
+
 ## TVM
 #### /home/scchiu/packages/mlc_llm_tensorization/tvm/python/tvm/relax/frontend/nn/llm/kv_cache.py
 修改了_attention_prefill_cpu()的 impl 原本是使用seq 執行完 q 跟 kv 的 loop， 更改成 對 q 還有 kv 做 split 並把做 gemm 的部分切出單獨的block方便後續的 tensorization
